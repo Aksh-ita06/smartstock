@@ -1,54 +1,132 @@
 import {
   AlertTriangle,
   ShoppingCart,
-  ArrowRightLeft,
 } from "lucide-react";
 
 function RecommendationCard({
-  type,
+  productId,
+  status,
   product,
-  warehouse,
-  message,
-  action,
+  currentStock,
+  reorderLevel,
+  averageDailySales,
+  estimatedDaysUntilStockout,
+  recommendedStock,
+  reorderQuantity,
+  onRestock,
 }) {
-  let Icon;
+  const isUrgent = status === "URGENT";
 
-  if (type === "LOW_STOCK") {
-    Icon = AlertTriangle;
-  } else if (type === "REORDER") {
-    Icon = ShoppingCart;
-  } else {
-    Icon = ArrowRightLeft;
-  }
+  const handleRestockClick = () => {
+    if (!reorderQuantity || reorderQuantity <= 0) {
+      alert("No restock required for this product.");
+      return;
+    }
+
+    onRestock(productId, reorderQuantity);
+  };
 
   return (
-    <div className={`recommendation-card ${type.toLowerCase()}`}>
+    <div
+      className={`recommendation-card ${
+        isUrgent ? "urgent" : "warning"
+      }`}
+    >
+
+      {/* ICON */}
       <div className="recommendation-icon">
-        <Icon size={22} />
+        {isUrgent ? (
+          <AlertTriangle size={22} />
+        ) : (
+          <ShoppingCart size={22} />
+        )}
       </div>
 
+      {/* CONTENT */}
       <div className="recommendation-content">
+
+        {/* HEADER */}
         <div className="recommendation-header">
+
           <h3>
-            {type === "LOW_STOCK"
-              ? "Critical Stock"
-              : type === "REORDER"
-              ? "Reorder Recommended"
-              : "Transfer Recommended"}
+            {isUrgent
+              ? "Urgent Reorder"
+              : "Reorder Recommended"}
           </h3>
 
           <span className="recommendation-type">
-            {warehouse}
+            {status}
           </span>
+
         </div>
 
-        <strong>{product}</strong>
+        {/* PRODUCT */}
+        <strong className="recommendation-product">
+          {product}
+        </strong>
 
-        <p>{message}</p>
+        {/* DETAILS */}
+        <div className="recommendation-details">
 
-        <button className="action-button">
-          {action}
+          <div>
+            <span>Current Stock</span>
+            <strong>{currentStock}</strong>
+          </div>
+
+          <div>
+            <span>Reorder Level</span>
+            <strong>{reorderLevel}</strong>
+          </div>
+
+          <div>
+            <span>Daily Sales</span>
+            <strong>
+              {Number(averageDailySales).toFixed(2)}
+            </strong>
+          </div>
+
+          <div>
+            <span>Stockout In</span>
+            <strong>
+              {estimatedDaysUntilStockout === null
+                ? "N/A"
+                : `${Number(
+                    estimatedDaysUntilStockout
+                  ).toFixed(1)} days`}
+            </strong>
+          </div>
+
+        </div>
+
+        {/* RECOMMENDATION */}
+        <div className="recommendation-summary">
+
+          <p>
+            Recommended stock:{" "}
+            <strong>
+              {recommendedStock} units
+            </strong>
+          </p>
+
+          <p>
+            Suggested reorder:{" "}
+            <strong>
+              {reorderQuantity} units
+            </strong>
+          </p>
+
+        </div>
+
+        {/* RESTOCK BUTTON */}
+        <button
+          type="button"
+          className="action-button"
+          onClick={handleRestockClick}
+        >
+          <ShoppingCart size={16} />
+          <span>Restock {reorderQuantity} Units</span>
         </button>
+
       </div>
     </div>
   );
