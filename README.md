@@ -1,16 +1,137 @@
-# React + Vite
+# SmartStock
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack inventory management dashboard built with **React** and **Node.js/Express**.
 
-Currently, two official plugins are available:
+SmartStock provides a centralized dashboard for monitoring inventory information and presenting stock-related insights through a clean and responsive interface.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+* Inventory dashboard
+* Overview of inventory statistics
+* Stock-related recommendations and alerts
+* Transaction/activity table
+* Frontend and backend communication through REST APIs
+* Responsive React-based user interface
+* Express.js backend for handling API requests
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+### Frontend
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* React
+* Vite
+* JavaScript
+* Lucide React
+* CSS
+
+### Backend
+
+* Node.js
+* Express.js
+* REST API
+
+### Development Tools
+
+* Git
+* GitHub
+* VS Code
+
+## Project Architecture
+
+The application follows a client-server architecture:
+
+The React frontend communicates with the Express backend through HTTP requests. The backend processes the requests and returns data that is displayed in the dashboard.
+
+## Getting Started
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+* Node.js
+* npm
+* Git
+
+### Clone the repository
+
+```bash
+git clone <YOUR_GITHUB_REPOSITORY_URL>
+cd smartstock
+```
+
+### Install frontend dependencies
+
+```bash
+cd client
+npm install
+```
+
+### Start the frontend
+
+```bash
+npm run dev
+```
+
+The React application will be available at the local URL shown by Vite, typically:
+
+```text
+http://localhost:5173
+```
+
+### Install backend dependencies
+
+Open another terminal:
+
+```bash
+cd server
+npm install
+```
+
+### Start the backend
+
+```bash
+npm start
+```
+
+If the backend uses a different start command in your `package.json`, use that command instead.
+
+## API
+
+The backend is built using Express.js and exposes endpoints used by the React frontend.
+
+### Example
+
+```text
+GET /...
+```
+
+> API routes will be documented here once the backend endpoints are finalized.
+
+## Project Goals
+
+SmartStock was developed to practice and demonstrate full-stack development concepts including:
+
+* React component-based development
+* REST API integration
+* Client-server communication
+* Express.js backend development
+* Dashboard and data visualization
+* Git and GitHub-based project management
+
+## Future Improvements
+
+Potential future improvements include:
+
+* Persistent database integration
+* User authentication and authorization
+* Advanced inventory analytics
+* Search and filtering
+* Product management
+* Stock history and reporting
+* Deployment to a cloud platform
+
+## Author
+
+**Akshita Goel**
+
+Built as a full-stack development project.
